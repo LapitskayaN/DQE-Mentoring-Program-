@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230420 10:07:35.628" rpa="false" schemaversion="3">
+<suite id="s1" name="Test Robot" source="D:\DQE\DQE_Training_2023\Module_4_TA_Frameworks\TASK1_ROBOT\test_robot.robot">
+<test id="s1-t1" name="Connect to database" line="19">
+<kw name="Connect To Database" library="DatabaseLibrary">
+<arg>pymssql</arg>
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
+connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<msg timestamp="20230420 10:07:35.735" level="INFO">Connecting using : pymssql.connect(database=TRN, user=TestUser3, password=TestUser3, host=127.0.0.1, port=1433) </msg>
+<status status="PASS" starttime="20230420 10:07:35.726" endtime="20230420 10:07:35.779"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.725" endtime="20230420 10:07:35.779"/>
+</test>
+<test id="s1-t2" name="Tc_screen" line="22">
+<kw name="Take Screenshot" library="Screenshot">
+<doc>Takes a screenshot in JPEG format and embeds it into the log file.</doc>
+<msg timestamp="20230420 10:07:35.976" level="INFO" html="true">&lt;a href="screenshot_2.jpg"&gt;&lt;img src="screenshot_2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20230420 10:07:35.780" endtime="20230420 10:07:35.976"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>screen was take</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230420 10:07:35.977" level="INFO">screen was take</msg>
+<status status="PASS" starttime="20230420 10:07:35.976" endtime="20230420 10:07:35.977"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.779" endtime="20230420 10:07:35.977"/>
+</test>
+<test id="s1-t3" name="TC1 Count of unique values of city column in US from table hr.locations" line="26">
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT COUNT(DISTINCT(city)) FROM ${TABLE_NAME1} where country_id = 'US'</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.978" level="INFO">Executing : Query  |  SELECT COUNT(DISTINCT(city)) FROM hr.locations where country_id = 'US' </msg>
+<msg timestamp="20230420 10:07:35.981" level="INFO">@{results} = [ (3,) ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.977" endtime="20230420 10:07:35.981"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230420 10:07:35.981" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230420 10:07:35.981" endtime="20230420 10:07:35.981"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>${results}[0][0]</arg>
+<arg>${ER_TC1}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20230420 10:07:35.982" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230420 10:07:35.981" endtime="20230420 10:07:35.982"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.977" endtime="20230420 10:07:35.982"/>
+</test>
+<test id="s1-t4" name="TC2 Found post-code of some city from table hr.locations" line="31">
+<kw name="Check post_code">
+<arg>postal_code</arg>
+<arg>'Munich'</arg>
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT ${column} from ${TABLE_NAME1} where city = ${filter_column}</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.983" level="INFO">Executing : Query  |  SELECT postal_code from hr.locations where city = 'Munich' </msg>
+<msg timestamp="20230420 10:07:35.985" level="INFO">@{results} = [ ('80925',) ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.983" endtime="20230420 10:07:35.985"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230420 10:07:35.985" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230420 10:07:35.985" endtime="20230420 10:07:35.985"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.983" endtime="20230420 10:07:35.985"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.982" endtime="20230420 10:07:35.985"/>
+</test>
+<test id="s1-t5" name="TC3 Find max value in column country_name where region_id ='1' from table hr.countries" line="35">
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT max(country_name) FROM ${TABLE_NAME2} where region_id ='1'</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.986" level="INFO">Executing : Query  |  SELECT max(country_name) FROM hr.countries where region_id ='1' </msg>
+<msg timestamp="20230420 10:07:35.989" level="INFO">@{results} = [ ('United Kingdom',) ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.986" endtime="20230420 10:07:35.989"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230420 10:07:35.989" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230420 10:07:35.989" endtime="20230420 10:07:35.989"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${results}[0][0]</arg>
+<arg>${ER_TC3}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230420 10:07:35.989" endtime="20230420 10:07:35.989"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.986" endtime="20230420 10:07:35.989"/>
+</test>
+<test id="s1-t6" name="TC4 Check number of NULL values in columns table hr.countries" line="40">
+<kw name="Check number of NULL values in column">
+<arg>country_name</arg>
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT * from ${TABLE_NAME2} WHERE ${column} IS NULL</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.990" level="INFO">Executing : Query  |  SELECT * from hr.countries WHERE country_name IS NULL </msg>
+<msg timestamp="20230420 10:07:35.992" level="INFO">@{results} = [ ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.990" endtime="20230420 10:07:35.992"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<msg timestamp="20230420 10:07:35.992" level="INFO">Length is 0</msg>
+<status status="PASS" starttime="20230420 10:07:35.992" endtime="20230420 10:07:35.992"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.990" endtime="20230420 10:07:35.992"/>
+</kw>
+<kw name="Check number of NULL values in column">
+<arg>region_id</arg>
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT * from ${TABLE_NAME2} WHERE ${column} IS NULL</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.993" level="INFO">Executing : Query  |  SELECT * from hr.countries WHERE region_id IS NULL </msg>
+<msg timestamp="20230420 10:07:35.994" level="INFO">@{results} = [ ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.992" endtime="20230420 10:07:35.994"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<msg timestamp="20230420 10:07:35.994" level="INFO">Length is 0</msg>
+<status status="PASS" starttime="20230420 10:07:35.994" endtime="20230420 10:07:35.994"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.992" endtime="20230420 10:07:35.994"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.990" endtime="20230420 10:07:35.994"/>
+</test>
+<test id="s1-t7" name="TC5 Check minimal value in region_name column" line="45">
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT min(last_name) FROM ${TABLE_NAME3}</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.995" level="INFO">Executing : Query  |  SELECT min(last_name) FROM hr.employees </msg>
+<msg timestamp="20230420 10:07:35.997" level="INFO">@{results} = [ ('Austin',) ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.995" endtime="20230420 10:07:35.997"/>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<arg>${results}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<msg timestamp="20230420 10:07:35.997" level="INFO">Length is 1</msg>
+<status status="PASS" starttime="20230420 10:07:35.997" endtime="20230420 10:07:35.997"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${results}[0][0]</arg>
+<arg>${ER_TC5}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230420 10:07:35.997" endtime="20230420 10:07:35.997"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.994" endtime="20230420 10:07:35.997"/>
+</test>
+<test id="s1-t8" name="TC6 Check average salary" line="50">
+<kw name="Check average value in column">
+<arg>salary</arg>
+<arg>${ER_TC6}</arg>
+<kw name="Query" library="DatabaseLibrary">
+<var>@{results}</var>
+<arg>SELECT AVG(${column}) from ${TABLE_NAME3} where department_id='10'</arg>
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional
+input `sansTran` to True to run command without an explicit transaction commit or rollback.
+Set optional input `returnAsDict` to True to return values as a list of dictionaries.</doc>
+<msg timestamp="20230420 10:07:35.999" level="INFO">Executing : Query  |  SELECT AVG(salary) from hr.employees where department_id='10' </msg>
+<msg timestamp="20230420 10:07:36.000" level="INFO">@{results} = [ (Decimal('8600.000000'),) ]</msg>
+<status status="PASS" starttime="20230420 10:07:35.998" endtime="20230420 10:07:36.000"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${results}[0][0]</arg>
+<arg>${expected}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230420 10:07:36.001" level="INFO">Argument types are:
+&lt;class 'decimal.Decimal'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230420 10:07:36.001" endtime="20230420 10:07:36.001"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.998" endtime="20230420 10:07:36.001"/>
+</kw>
+<status status="PASS" starttime="20230420 10:07:35.998" endtime="20230420 10:07:36.001"/>
+</test>
+<status status="PASS" starttime="20230420 10:07:35.630" endtime="20230420 10:07:36.001"/>
+</suite>
+<statistics>
+<total>
+<stat pass="8" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="8" fail="0" skip="0" id="s1" name="Test Robot">Test Robot</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
