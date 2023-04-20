@@ -1,7 +1,7 @@
 # Project for running Robot Framework 
 and perform basic testing of data from "TNR" database via SQL statements
 
-# Test desctipton : TestDescription.xlsx
+## Test desctipton : TestDescription.xlsx
 https://github.com/LapitskayaN/DQE-Mentoring-Program-/blob/main/Module_4_TASK1_ROBOT/TestDescription.xlsx
 
 # Requirements: 
