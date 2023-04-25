@@ -1,15 +1,15 @@
 # Project pytest with automated test cases from 'TNR' database
 
-# Test desctipton : TestDescription.xlsx
+## Test desctipton : TestDescription.xlsx
 
-# Requirements: 
+## Requirements: 
 1. Python 3
 2. PyTest: pip install pytest
 3. pymssql: pip install pymssql
 4. TRN database
 
 
-# run project:
+## run project:
 1. Load project 
 2. Go to directory with project : D:\DQE\DQE_Training_2023\Module_4_TA_Frameworks\TASK2_PYTEST
 3. Update variables to database connection if it needs to connect your database server (class MSSQLClient)
@@ -18,8 +18,8 @@
 6. Check report report.htm files 
 
 
-# Testcases
+## Testcases
+https://github.com/LapitskayaN/DQE-Mentoring-Program-/blob/main/Module_4_TASK2_PYTEST/test_cases.py
 
-
-# Test report
+## Test report
 https://github.com/LapitskayaN/DQE-Mentoring-Program-/blob/main/Module_4_TASK2_PYTEST/report.html
