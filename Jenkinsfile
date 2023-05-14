@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        PYTHONPATH = 'Module_4_TASK2_PYTEST'
-    }
     stages {
         stage('test') {
             steps {
