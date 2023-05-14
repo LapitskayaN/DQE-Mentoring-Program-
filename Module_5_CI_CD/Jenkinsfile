@@ -7,7 +7,18 @@ pipeline {
             stage('Test') {
                 steps {
                     echo 'Hello World ...'
-                }
-
+            }
+        }
+       stage('install requirements') {
+            steps {
+                sh "git checkout ${params.BRANCH}"
+                sh 'pip install -r Module_4_TASK2_PYTEST/requirements.txt'
+            }
+        }
+        stage('run tests') {
+            steps {
+                sh 'pytest Module_4_TASK2_PYTEST'
+            }
+        }
     }
 }
