@@ -11,7 +11,7 @@ pipeline {
 	}
         stage('build') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'pip install -r Module_4_TASK2_PYTEST/requirements.txt'
             }
         }
         stage('Run test') {
