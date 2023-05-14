@@ -3,11 +3,11 @@ pipeline {
     environment {
         PYTHONPATH = 'Module_4_TASK2_PYTEST'
     }
-    stages {      
-        stage('run tests') {
-            steps {
-                sh 'Module_4_TASK2_PYTEST'
-            }
-        }
+    stages {
+            stage('Test') {
+                steps {
+                    echo 'Hello World ...'
+                }
+
     }
 }
