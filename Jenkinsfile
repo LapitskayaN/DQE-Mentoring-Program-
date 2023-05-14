@@ -11,7 +11,7 @@ pipeline {
 	}        
         stage('Run test') {
             steps {
-                sh 'pytest Module_4_TASK2_PYTEST'
+                sh 'pytest Module_4_TASK2_PYTEST/test_cases.py'
             }
         }
     }
