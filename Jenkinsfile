@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PYTHONPATH = '4_Test_Automation/homework_pytest/src'
+    }
     stages {
         stage('test') {
             steps {
@@ -8,7 +11,7 @@ pipeline {
 	}      
         stage('Run test') {
             steps {
-                sh 'pytest test.py'
+                sh 'pytest 4_Test_Automation/homework_pytest'
             }
         }
     }
