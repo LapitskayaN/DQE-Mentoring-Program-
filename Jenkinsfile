@@ -8,10 +8,14 @@ pipeline {
             steps {
                 echo 'Hello World ...'
             }
-        }
-        stage('version') {
+        stage('build') {
             steps {
-                sh 'python --version'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run test') {
+            steps {
+                sh 'python Module_4_TASK2_PYTEST/test_cases.py'
             }
         }
     }
