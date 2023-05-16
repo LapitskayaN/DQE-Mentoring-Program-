@@ -1,0 +1,53 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "jobs.suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "job_id",
+          "job_title",
+          "min_salary",
+          "max_salary"
+        ]
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_table_row_count_to_be_between",
+      "kwargs": {
+        "max_value": 19,
+        "min_value": 19
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_min_to_be_between",
+      "kwargs": {
+        "column": "job_id",
+        "max_value": 1,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_max_to_be_between",
+      "kwargs": {
+        "column": "max_salary",
+        "max_value": 100000,
+        "min_value": 1
+      },
+      "meta": {}
+    },
+    {
+      "expectation_type": "expect_column_mean_to_be_between",
+      "kwargs": {
+        "column": "min_salary",
+        "max_value": 10000,
+        "min_value": 7000
+      },
+      "meta": {}
+    }
+  ]
+}
