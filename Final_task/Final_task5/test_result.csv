@@ -1,0 +1,43 @@
+,Table,DQ_check,Column,Status,Bad_Data
+0,airports,Completeness,Lat,Passed,No bad data.
+1,airports,Completeness,Long,Failed,Column Long is not present in parquet file
+2,carriers,uniqueness,"['Code', 'Description']",Failed,"There are 7 duplicated rows:      Code          Description
+4     07Q  Flair Airlines Ltd.
+6     0BQ                  DCA
+1494  ZUQ  Zuliana De Aviacion
+1501  07Q  Flair Airlines Ltd.
+1502  0BQ                  DCA"
+3,carriers,uniqueness,"['Iata', 'City', 'Airport']",Failed,"There are 2 duplicated rows:      Iata      City   Airport
+3368  Z09  Kasigluk  Kasigluk
+3386  Z09  Kasigluk  Kasigluk"
+4,carriers,uniqueness,['Iata'],Failed,"There are 14 duplicated rows:   Iata
+0  00M
+1  00R
+2  00V
+8  NaN
+9  NaN"
+5,carriers,uniqueness,"['Year', 'Month', 'DayofMonth', 'DepTime', 'FlightNum']",Failed,"There are 24 duplicated rows:       Year  Month  DayofMonth  DepTime  FlightNum
+0   2008.0    5.0         1.0    859.0     1755.0
+1   2008.0    5.0         1.0    859.0     1755.0
+15  2008.0    7.0        15.0   1726.0      401.0
+16  2008.0    7.0        15.0   1726.0      401.0
+17  2008.0    7.0        15.0   1726.0      401.0"
+6,flights,validity,ArrTime,Failed,"Number of rows with NO VALID column ""ArrTime""  :  8:      ArrTime
+61    2926.0
+187      NaN
+382      NaN
+408      NaN
+410      NaN"
+7,flights,validity,DepTime,Failed,"Number of rows with NO VALID column ""DepTime""  :  8:      DepTime
+59    2500.0
+187      NaN
+382      NaN
+408      NaN
+410      NaN"
+8,flights,validity,CRSArrTime,Failed,"Number of rows with NO VALID column ""CRSArrTime""  :  2:      CRSArrTime
+513         NaN
+521         NaN"
+9,flights,validity,CRSDepTime,Failed,"Number of rows with NO VALID column ""CRSDepTime""  :  2:      CRSDepTime
+513         NaN
+519         NaN"
+10,flights,consistency,CancellationCode,Failed, Consinstency check is failed. if Cancelled = 0 then CancellationCode  can be not only NULL. Possible values:  [nan 'A' 'B' 'C']

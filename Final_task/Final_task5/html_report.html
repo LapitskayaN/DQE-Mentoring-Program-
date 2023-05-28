@@ -1,0 +1,102 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Table</th>
+      <th>DQ_check</th>
+      <th>Column</th>
+      <th>Status</th>
+      <th>Bad_Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>airports</td>
+      <td>Completeness</td>
+      <td>Lat</td>
+      <td>Passed</td>
+      <td>No bad data.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>airports</td>
+      <td>Completeness</td>
+      <td>Long</td>
+      <td>Failed</td>
+      <td>Column Long is not present in parquet file</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>carriers</td>
+      <td>uniqueness</td>
+      <td>[Code, Description]</td>
+      <td>Failed</td>
+      <td>There are 7 duplicated rows:      Code          Description\n4     07Q  Flair Airlines Ltd.\n6     0BQ                  DCA\n1494  ZUQ  Zuliana De Aviacion\n1501  07Q  Flair Airlines Ltd.\n1502  0BQ                  DCA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>carriers</td>
+      <td>uniqueness</td>
+      <td>[Iata, City, Airport]</td>
+      <td>Failed</td>
+      <td>There are 2 duplicated rows:      Iata      City   Airport\n3368  Z09  Kasigluk  Kasigluk\n3386  Z09  Kasigluk  Kasigluk</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>carriers</td>
+      <td>uniqueness</td>
+      <td>[Iata]</td>
+      <td>Failed</td>
+      <td>There are 14 duplicated rows:   Iata\n0  00M\n1  00R\n2  00V\n8  NaN\n9  NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>carriers</td>
+      <td>uniqueness</td>
+      <td>[Year, Month, DayofMonth, DepTime, FlightNum]</td>
+      <td>Failed</td>
+      <td>There are 24 duplicated rows:       Year  Month  DayofMonth  DepTime  FlightNum\n0   2008.0    5.0         1.0    859.0     1755.0\n1   2008.0    5.0         1.0    859.0     1755.0\n15  2008.0    7.0        15.0   1726.0      401.0\n16  2008.0    7.0        15.0   1726.0      401.0\n17  2008.0    7.0        15.0   1726.0      401.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>flights</td>
+      <td>validity</td>
+      <td>ArrTime</td>
+      <td>Failed</td>
+      <td>Number of rows with NO VALID column "ArrTime"  :  8:      ArrTime\n61    2926.0\n187      NaN\n382      NaN\n408      NaN\n410      NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>flights</td>
+      <td>validity</td>
+      <td>DepTime</td>
+      <td>Failed</td>
+      <td>Number of rows with NO VALID column "DepTime"  :  8:      DepTime\n59    2500.0\n187      NaN\n382      NaN\n408      NaN\n410      NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>flights</td>
+      <td>validity</td>
+      <td>CRSArrTime</td>
+      <td>Failed</td>
+      <td>Number of rows with NO VALID column "CRSArrTime"  :  2:      CRSArrTime\n513         NaN\n521         NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>flights</td>
+      <td>validity</td>
+      <td>CRSDepTime</td>
+      <td>Failed</td>
+      <td>Number of rows with NO VALID column "CRSDepTime"  :  2:      CRSDepTime\n513         NaN\n519         NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>flights</td>
+      <td>consistency</td>
+      <td>CancellationCode</td>
+      <td>Failed</td>
+      <td>Consinstency check is failed. if Cancelled = 0 then CancellationCode  can be not only NULL. Possible values:  [nan 'A' 'B' 'C']</td>
+    </tr>
+  </tbody>
+</table>
